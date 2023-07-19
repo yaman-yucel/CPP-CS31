@@ -1,0 +1,200 @@
+1) Last function was hard and took time. I took incremental steps at that function. First, considered an array without any >splitter and =splitter values, then add one by one. Other functions were not problematic.
+2) All tests are available in my main file.
+	FUNCTION 1 - appendToAll tests:
+
+	string people[5] = { "boris", "gordon", "rishi", "liz", "john" };
+	int func_1_return = appendToAll(people, 3, "!!!"); I have manually checked whether it added or not.
+	appendToAll(people, 0, "!!!"); Checked the behavior for empty array.
+	
+	FUNCTION 2 - lookup tests:
+
+	string people[5] = { "boris", "gordon", "rishi", "liz", "john" };
+	assert(lookup(people, 0, "john") == -1);  // should return -1 (not found) since it is empty
+	assert(lookup(people, 1, "john") == -1); 
+	assert(lookup(people, 2, "john") == -1);
+	assert(lookup(people, 3, "john") == -1);
+	assert(lookup(people, 4, "john") == -1);
+	assert(lookup(people, 5, "john") == 4);  // should return the position since such value is found.
+
+	FUNCTION 3 -- positionOfMax tests: // I checked every possible value n to test this function.
+
+	string pm[6] = { "david", "liz", "boris", "tony", "tony", "boris" }; 
+	assert(positionOfMax(pm, 0) == -1);
+	assert(positionOfMax(pm, 1) == 0);
+	assert(positionOfMax(pm, 2) == 1);
+	assert(positionOfMax(pm, 3) == 1);
+	assert(positionOfMax(pm, 4) == 3); // checked whether returns 3 for n = 4 and n = 5
+	assert(positionOfMax(pm, 5) == 3);
+	assert(positionOfMax(pm, 6) == 3);
+	
+	FUNCTION 4 -- rotateLeft tests: // Checked every possible value of n to test this function, and compared it element by element.
+
+	const string mp_c[5] = { "john", "david", "liz", "theresa", "margaret" };
+
+	string mp[5];
+	resetArray(mp_c, mp, 5);
+	assert(rotateLeft(mp, 5, 0) == 0 && mp[0] == "david" && mp[1] == "liz" && mp[2] == "theresa" && mp[3] == "margaret" && mp[4] == "john");
+	resetArray(mp_c, mp, 5);
+	assert(rotateLeft(mp, 5, 1) == 1 && mp[0] == "john" && mp[1] == "liz" && mp[2] == "theresa" && mp[3] == "margaret" && mp[4] == "david");
+	resetArray(mp_c, mp, 5);
+	assert(rotateLeft(mp, 5, 2) == 2 && mp[0] == "john" && mp[1] == "david" && mp[2] == "theresa" && mp[3] == "margaret" && mp[4] == "liz");
+	resetArray(mp_c, mp, 5);
+	assert(rotateLeft(mp, 5, 3) == 3 && mp[0] == "john" && mp[1] == "david" && mp[2] == "liz" && mp[3] == "margaret" && mp[4] == "theresa");
+	resetArray(mp_c, mp, 5);
+	assert(rotateLeft(mp, 5, 4) == 4 && mp[0] == "john" && mp[1] == "david" && mp[2] == "liz" && mp[3] == "theresa" && mp[4] == "margaret");
+	resetArray(mp_c, mp, 5);
+
+
+	FUNCTION 5 -- countRuns tests: // check every possible of n including negative to array length. Can count repetitive sequences that are seperated by another value.	
+
+	string d[9] = {
+		"tony", "boris", "rishi", "rishi", "gordon", "gordon", "gordon", "rishi", "rishi"
+	};
+	assert(countRuns(d, -5) == -1);
+	assert(countRuns(d, 0) == 0);
+	assert(countRuns(d, 1) == 1);
+	assert(countRuns(d, 2) == 2);
+	assert(countRuns(d, 3) == 3);
+	assert(countRuns(d, 4) == 3);
+	assert(countRuns(d, 5) == 4);
+	assert(countRuns(d, 6) == 4);
+	assert(countRuns(d, 7) == 4);
+	assert(countRuns(d, 8) == 5);
+	assert(countRuns(d, 9) == 5);
+
+	FUNCTION 6 -- flip tests: checked empty array , empty string, long array. odd number of elements and even number of elements.
+
+	assert(flip(flip_numbers1, 6) == 6 && flip_numbers1[0] == "6" && flip_numbers1[1] == "5" && flip_numbers1[2] == "4" && flip_numbers1[3] == "3" && flip_numbers1[4] == "2" && flip_numbers1[5] == "1");
+	assert(flip(flip_numbers2, 5) == 5 && flip_numbers2[0] == "5" && flip_numbers2[1] == "4" && flip_numbers2[2] == "3" && flip_numbers2[3] == "2" && flip_numbers2[4] == "1");
+	assert(flip(flip_numbers3, 2) == 2 && flip_numbers3[0] == "" && flip_numbers3[1] == "1");
+	assert(flip(flip_numbers4, 1) == 1 && flip_numbers4[0] == "");
+	assert(flip(flip_numbers4, 0) == 0);
+
+	FUNCTION 7 -- differ tests: works fine finds where difference occur for any n.
+
+	string leader[6] = { "boris", "rishi", "", "tony", "theresa", "david" };
+	string politician[5] = { "boris", "rishi", "david", "", "tony" };
+	assert(differ(leader, 6, politician, 5) == 2);
+	assert(differ(leader, 2, politician, 1) == 1);
+
+	FUNCTIOn 8 -- subsequence tests: can detect the subsequence even though subsequence is empty array.
+	
+	string names[10] = { "john","margaret", "theresa", "rishi", "boris", "liz" };
+	string names1[3] = { "margaret", "theresa", "rishi" };
+	string names2[2] = { "john", "rishi" };
+	assert(subsequence(names, 6, names1, 3) == 1);
+	assert(subsequence(names, 5, names2, 2) == -1);
+
+	string f8_numbers1[7] = { "1","2","3","4","5","6","7" };
+	string f8_numbers2[3] = { "5","6","7" };
+	string f8_numbers3[3] = { "1","2","3" };
+	assert(subsequence(f8_numbers1, 7, f8_numbers2, 3) == 4); regular test
+	assert(subsequence(f8_numbers1, 7, f8_numbers2, 0) == 0); subsequence is empty
+	assert(subsequence(f8_numbers1, 0, f8_numbers2, 0) == 0); subsequence is empty and array is empty
+	assert(subsequence(f8_numbers1, 0, f8_numbers2, 1) == -1); subsequence is not empty but array is empty
+	assert(subsequence(f8_numbers1, 7, f8_numbers3, 3) == 0); regular test
+
+	FUNCTION 9 - lookupAny tests:
+
+	string f9_names[6] = { "john", "margaret", "theresa", "rishi", "boris", "liz" };
+	string f9_set1[4] = { "david", "boris", "rishi", "margaret" };
+	string f9_set2[2] = { "tony", "gordon" };
+	assert(lookupAny(f9_names, 6, f9_set1, 4) == 1); regular test that contains second input
+	assert(lookupAny(f9_names, 6, f9_set2, 2) == -1); regular test that does not contain second input
+	assert(lookupAny(f9_names, 6, f9_set2, 0) == -1); empty second input
+	assert(lookupAny(f9_names, 0, f9_set2, 1) == -1); empty first input.
+
+	FUNCTION 10 - split tests: I have manually checked every case. 
+
+	string splitter; // case that >splitter does not exist.
+	string mySplit1[5] = { "1","2","3","4","4" };
+	splitter = "4";
+	cerr << "RETURNED VALUE: " << split(mySplit1, 5, splitter) << endl; 
+	for (int i = 0; i < 5; i++)
+	{
+		cerr << mySplit1[i] << " ";
+
+	}
+	cerr << endl;
+
+
+	string mysplit2[2] = { "5","1" };
+	splitter = "4"; // case that splitter does not exist.
+	cerr << "returned value: " << split(mysplit2, 2, splitter) << endl; 
+	for (int i = 0; i < 2; i++)
+	{
+		cerr << mysplit2[i] << " ";
+
+	}
+	cerr << endl;
+
+	string mysplit3[7] = { "1","4","2","3","4","1","4" }; // 
+	splitter = "4"; // case that multiple splitter exist and >splitter does not exist.
+	cerr << "returned value: " << split(mysplit3, 7, splitter) << endl;;
+	for (int i = 0; i < 7; i++)
+	{
+		cerr << mysplit3[i] << " ";
+
+	}
+	cerr << endl;
+
+	string mySplit4[2] = { "1","4" }; // 
+	splitter = "4"; // short one without >splitter
+	cerr << "RETURNED VALUE: " << split(mySplit4, 2, splitter) << endl;;
+	for (int i = 0; i < 2; i++)
+	{
+		cerr << mySplit4[i] << " ";
+
+	}
+	cerr << endl;
+
+	string mySplit5[7] = { "5","4","5","3","4","1","4" }; 
+	splitter = "4"; // regular one with multiple splitter
+	cerr << "RETURNED VALUE: " << split(mySplit5, 7, splitter) << endl;;
+	for (int i = 0; i < 7; i++)
+	{
+		cerr << mySplit5[i] << " ";
+
+	}
+	cerr << endl;
+
+	string mySplit6[7] = { "5","4","5","5","5","4","4" }; 
+	splitter = "4"; // case without <splitter
+	cerr << "RETURNED VALUE: " << split(mySplit6, 7, splitter) << endl;;
+	for (int i = 0; i < 7; i++)
+	{
+		cerr << mySplit6[i] << " ";
+
+	}
+	cerr << endl;
+
+	string mySplit7[1] = { "1" };
+	splitter = "4"; // single <splitter case
+	cerr << "RETURNED VALUE: " << split(mySplit7, 1, splitter) << endl;;
+	for (int i = 0; i < 1; i++)
+	{
+		cerr << mySplit7[i] << " ";
+
+	}
+	cerr << endl;
+
+	string mySplit8[1] = { "4" };
+	splitter = "4"; //single =splitter case
+	cerr << "RETURNED VALUE: " << split(mySplit8, 1, splitter) << endl;;
+	for (int i = 0; i < 1; i++)
+	{
+		cerr << mySplit8[i] << " ";
+
+	}
+	cerr << endl;
+
+	string mySplit9[1] = { "5" };
+	splitter = "4";// single >splitter case
+	cerr << "RETURNED VALUE: " << split(mySplit9, 1, splitter) << endl;;
+	for (int i = 0; i < 1; i++)
+	{
+		cerr << mySplit9[i] << " ";
+
+	}
+	cerr << endl;
+	cerr << "FUNCTION 10 -- TESTS PASSED" << endl;

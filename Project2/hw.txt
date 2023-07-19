@@ -1,0 +1,126 @@
+------------------Problem 1:------------------
+
+---Given Code---
+
+string grendel = "endl";
+cout << "endl";
+cout << grendel;
+cout << endl;
+cout << "grendel";
+
+---Output of the Code---
+
+endlendl
+grendel
+
+Two endl strings, One Backslash, then grendel string are printed in an order.
+
+
+------------------Problem 2:------------------
+
+---Given Code---
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int side;
+
+	cout << "Enter a number: ";
+	cin >> side;
+
+	for (int i = 0; i < side; i++)
+	{
+		for (int j = i; j >= 0; j--)
+		{
+		    cout << "#";
+		}
+		cout << "\n";
+	}
+}
+
+---Output and Explanation---
+
+side = 3
+
+#
+##
+###
+
+It prints a right triangle with sides having "side" number of #.
+It also fills inside the triangle with #. 
+For example, if side = 3. 
+Then first row will include 1 #, second row will include 2 # and third row will include 3 #. 
+It continues creating rows until input side = row number, also each row contains row number of #.
+
+------------------Problem 3------------------
+
+---Code---
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int side;
+
+	cout << "Enter a number: ";
+	cin >> side;
+
+	for (int i = 0; i < side; i++)  
+	{
+		int j = i;
+		while (j >= 0)
+		{
+			cout << "#";
+			j--;
+		}
+		cout << "\n";
+	}
+}
+
+---Explanation---
+
+It prints the exactly the same right triangle printed in the problem 2.
+
+------------------Problem 4:------------------
+
+---Given Code---
+
+if (codeSection == 281)
+	cout << "bigamy";
+else if (codeSection == 321  ||  codeSection == 322)
+	cout << "selling illegal lottery tickets";
+else if (codeSection == 383)
+	cout << "selling rancid butter";
+else if (codeSection == 598)
+	cout << "injuring a bird in a public cemetery";
+else
+	cout << "some other crime";
+
+
+---Code with switch---
+
+switch (codeSection)
+{
+	case 281:
+		cout << "bigamy";
+		break;
+	case 321:
+		cout << "selling illegal lottery tickets";
+		break;
+	case 322:
+		cout << "selling illegal lottery tickets";
+		break;
+	case 383:
+		cout << "selling rancid butter";
+		break;
+	case 598:
+		cout << "injuring a bird in a public cemetery";
+		break;
+	default:
+		cout << "some other crime";
+		break;
+}
+

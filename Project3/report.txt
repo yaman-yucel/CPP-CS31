@@ -1,0 +1,117 @@
+a) I have started coding without fully understanding the assignment. So, it was hard to do write any code at that time. When I have fully read the assignment, I have quickly finished the assignment.
+It was a slightly hard assignment since at first I have assumed the input to the function is true. Then I have tried to catch errors in the input. 
+I have always thought I missed something, but after many test cases I am convinced that my code fully works. I am checking each character,
+then using the past information, I try to find the meaning of the character. For example, when I get 2, I find whether this is a valid vote and is this the first or second digit?
+
+
+b) I have not used any other function inside the functions, therefore I have tried to explain as much as I can without giving much detail. 
+It would be a much pretty pseudocode, If I have used functions inside the functions listed below.
+
+------pseudocode for isValidPollString()
+
+	check empty string
+	traverse over the string:
+		check whether the character is letter, digit, coma or else
+		if it is a letter
+			check whether it belongs to the state code
+				if it belongs to the state code check first letter or second letter of state code
+					if it is the first letter, save it.
+					if it is the second letter, check whether first + second letter is a state code
+						mark state code as a valid state code if it is a valid state code		
+					if you have marked a valid state code, this letter might be a party letter
+						check whether you have stored one or two digits.
+							if you have stored one or two digits, this should be a party letter
+								reset stored digits to process other party votes.
+		if it is a digit
+			check whether there is a marked valid state code.
+				if it is the first digit, save it.
+				if it is the second digit, combine two digits and save it.
+		if it is a coma
+			check whether there is a saved valid state code
+			check whether although there are no party letter, there are votes.
+			reset inner variables to zero to process another state forecast.
+		if  it is anything else, this is not a valid poll string.
+	when you have finished traversing over the string
+		check whether the last forecast has valid statecode
+		check whether although there are no party letter, there are votes.
+					
+	say that the string is a valid pollstring.
+	
+------pseudocode for countSeats()
+	
+	check whether the pollData is a valid poll string.
+	check whether the party letter is a letter.
+	start to count votes by traversing over the poll string.
+		when the character is the party letter
+			check two places before the character
+				if it is a digit take the two-digit number stored before the character 
+					add it to sum of seats after converting two chars to int.
+			check one place before the character
+				if it is a digit take the one-digit number stored before the character 
+					add it to sum of seats after converting the char to int.
+	write sum to seatCount
+	return code
+
+c)  assert(isValidPollString(""));, check whether empty string works
+    assert(isValidPollString("CT91D81A32B93C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C3C")); check whether a long string with repetition works
+    assert(!isValidPollString("Ct5b,")); check whether string with a coma at the end does not work
+    assert(isValidPollString("CT5D,NY9R16D1I,VT,ne3r00D")); checking a valid poll string works which also looks like a real world example
+    assert(!isValidPollString("OH5D,DM8G,KL325M")); checking 3 digit vote does not work
+    assert(!isValidPollString("MN7T,C44D,PT55K")); checking unvalid state code
+    assert(!isValidPollString("AZP23F,AK00Z,WVH,CT00S,UT07Y,MD76Z")); checking unvalid two state code
+    assert(isValidPollString("MT90T,MT22D,MT36T,NH7T")); checking repetitive states work
+    assert(!isValidPollString("KS47Z0,CAA6Z")); checking a forecast without ending a party letter
+    assert(!isValidPollString("ND39P,CA4,CA345D")); checking a forecast without ending a party letter and does not include any party letter
+    assert(!isValidPollString("IL25G,LA54B,MN22F,P55O")); checking a forecast without a valid state code and without a party letter and having invalid votes
+    assert(!isValidPollString("ZT5D,NY9R16D1I,VT,ne3r00D")); checking with unvalid state code ZT
+
+    int seats;	
+    seats = -999;    // so we can detect whether countSeats sets seats
+    assert(countSeats("CT5D,NY9R16D1I,VT,ne3r00D", 'd', seats) == 0 && seats == 21);
+    seats = -999;    // so we can detect whether countSeats changes seats
+    assert(countSeats("CT5D,NY9R16D1I,VT,ne3r00D", '%', seats) == 2 && seats == -999);
+    assert(countSeats("", 'd',seats) == 0 && seats == 0); // checking empty string count seats. seats should be 0.
+    seats = -999;
+    assert(countSeats("RI876Y,LA54B,MN22F", 'd', seats) == 1 && seats == -999); // checking  whether invalid poll string does not change seats.
+
+EXTRA checks
+	assert(isValidPollString(""));
+	assert(!isValidPollString("C"));
+	assert(!isValidPollString("c"));
+	assert(!isValidPollString("3")); 
+	assert(!isValidPollString("3C")); // same lines run as the above one
+	assert(!isValidPollString("C3"));
+	assert(!isValidPollString("c3"));
+	assert(isValidPollString("CA"));
+	assert(isValidPollString("cA"));
+	assert(isValidPollString("Ca"));
+	assert(isValidPollString("ca"));
+	assert(!isValidPollString("CAD"));
+	assert(!isValidPollString("CAd"));
+	assert(!isValidPollString("CA3"));
+	assert(!isValidPollString("CA33"));
+	assert(isValidPollString("CA3D"));
+	assert(!isValidPollString("CA3D3"));
+	assert(!isValidPollString("CA3DD"));
+	assert(!isValidPollString("CA3D33"));
+	assert(isValidPollString("CA3D3D"));
+	assert(isValidPollString("CA3D33D"));
+	assert(!isValidPollString("CA3D333"));
+	assert(!isValidPollString("CA3D33D3"));
+	assert(!isValidPollString("CA3D33DD"));
+	assert(!isValidPollString("CA3D,M"));
+	assert(!isValidPollString("CA3D,M3"));
+	assert(isValidPollString("CA3D,MT"));
+	assert(!isValidPollString("CA3D,MT3"));
+	assert(!isValidPollString("CA3D,MT33"));
+	assert(isValidPollString("CA3D,MT3D"));
+	assert(isValidPollString("CA3D,MT33D"));
+	assert(!isValidPollString("CA3D,MT33D3"));
+	assert(!isValidPollString("CA3D,MT33D33"));
+	assert(!isValidPollString(","));
+	assert(!isValidPollString("C,"));
+	assert(!isValidPollString("CA,"));
+	assert(!isValidPollString("CA3,"));
+	assert(!isValidPollString("CA33,"));
+	assert(!isValidPollString("CA33D,"));
+	assert(!isValidPollString("CA,"));

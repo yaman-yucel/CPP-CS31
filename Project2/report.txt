@@ -1,0 +1,163 @@
+1) Notable Obstacles:
+
+a) Building the if structure was hard at first, 
+but when I have divided the problem into three categories it became much easier to handle.
+
+b) using cin.ignore(10000,"\n); ,at first my code was not working then when I have read the FAQ, 
+I have solved my problem using cin.ignore(10000,"\n")
+
+2) Following test data is in the form of (name, income, occupation, numberOfChildren)
+
+a) (Clara Barton, 115000, nurse, 5),      used to see whether exactly same output as in the website.
+
+Name: Clara Barton
+Taxable income: 115000
+Occupation: nurse
+Number of children: 5
+---
+Clara Barton would pay $4200.00
+
+b) (Rachel Green, 29544.69, waitress, 0), used to see whether exactly same output as in the website.
+
+Name: Rachel Green
+Taxable income: 29544.69
+Occupation: waitress
+Number of children: 0
+---
+Rachel Green would pay $1181.79
+
+c) (Mary Will, 10000, engineer, 0),       used to test taxpayer with income less than or equal to 55000.
+
+Name: Mary Will
+Taxable income: 10000
+Occupation: engineer
+Number of children: 0
+---
+Mary Will would pay $400.00
+
+d) (Mary Will, 55000, engineer, 0), used to test the first boundry of income. Taxpayer should only pay 4% tax.
+
+Name: Mary Will
+Taxable income: 55000
+Occupation: engineer
+Number of children: 0
+---
+Mary Will would pay $2200.00
+
+e) (Mary Will, 100000, engineer, 0), used to test the second category of income( 55000< income <= 125000)
+
+Name: Mary Will
+Taxable income: 100000
+Occupation: engineer
+Number of children: 0
+---
+Mary Will would pay $5350.00
+
+f) (Mary Will, 125000, engineer, 0), used to test the second boundary of income. Taxpayer should only pay 4% tax for the 55000 and then 7% for the 70000.
+
+Name: Mary Will
+Taxable income: 125000
+Occupation: engineer
+Number of children: 0
+---
+Mary Will would pay $7100.00
+
+g) (Mary Will, 200000, engineer, 0), used to test the third category of income. Taxpayer should only pay 4% tax for the 55000, then 7% for the 70000, then 9.3% for the remaining income.
+
+Name: Mary Will
+Taxable income: 200000
+Occupation: engineer
+Number of children: 0
+---
+Mary Will would pay $14075.00
+
+h) (, 200000, engineer, 0), used to test handling of empty name.
+
+Name:
+Taxable income: 200000
+Occupation: engineer
+Number of children: 0
+---
+You must enter a name
+
+i) (Mary Will, -200, engineer, 0), used to test handling of negative income.
+
+Name: Mary Will
+Taxable income: -200
+Occupation: engineer
+Number of children: 0
+---
+The taxable income must not be negative
+
+j) (Mary Will, 200000,, 0), used to test handling of empty occupation.
+
+Name: Mary Will
+Taxable income: 200000
+Occupation:
+Number of children: 0
+---
+You must enter an occupation
+
+k) (Mary Will, 200000, engineer, -5) used to test handling of negative number of children.
+
+Name: Mary Will
+Taxable income: 200000
+Occupation: engineer
+Number of children: -5
+---
+The number of children must not be negative
+
+l) (Mary Will, 10000, nurse, 0) used to test nurse occupation on first category
+
+Name: Mary Will
+Taxable income: 10000
+Occupation: nurse
+Number of children: 0
+---
+Mary Will would pay $400.00
+
+m) (Mary Will, 60000, nurse, 0) used to test nurse occupation on second category
+
+Name: Mary Will
+Taxable income: 60000
+Occupation: nurse
+Number of children: 0
+---
+Mary Will would pay $2450.00
+
+n) (Mary Will, 130000, nurse, 0)used to test nurse occupation on third category
+
+Name: Mary Will
+Taxable income: 130000
+Occupation: nurse
+Number of children: 0
+---
+Mary Will would pay $6165.00
+
+o) (Mary Will, 10000, nurse, 2) testing tax deduction on first category.
+
+Name: Mary Will
+Taxable income: 10000
+Occupation: nurse
+Number of children: 2
+---
+Mary Will would pay $0.00
+
+
+p) (Mary Will, 60000, nurse, 2) testing tax deduction on second category.
+
+Name: Mary Will
+Taxable income: 60000
+Occupation: nurse
+Number of children: 2
+---
+Mary Will would pay $2050.00
+
+r) (Mary Will, 130000, nurse, 2) testing tax deduction on third category. No tax deduction.
+
+Name: Mary Will
+Taxable income: 130000
+Occupation: nurse
+Number of children: 2
+---
+Mary Will would pay $6165.00

@@ -1,0 +1,71 @@
+1) No notable obstacles except using multiple files and compiling them at linux side.
+2) Pseudocode:
+main:
+	get words list
+	get number of words in words list
+	check whether you got the list properly
+	ask number of rounds
+	check whether input is valid
+		if not valid terminate
+		else start the game
+			check whether you played all the rounds
+			if yes terminate program
+			else play the round
+				output the score statistics of that round and go back checking whether you played all the rounds	
+playOneRound
+	ask the probe word
+	check whether it is a valid probe word
+		if not ask for another
+		else check whether the probe word is in the list
+			if not ask for another
+			else it is a valid probe word that exists in the list
+				count golds and mark them
+				count	 silvers and mark them
+				check whether probe word is the hidden word
+				if it is return to main function with the score
+				else display gold and silvers and ask for another probe word		
+
+Test 1: Testing negative number input for round.
+	
+	How many rounds do you want to play? -1
+	The number of rounds must be positive.
+
+Test 2: Testing probe word which is not in the list, also tested winning in 1 guess message.
+
+	How many rounds do you want to play? 1
+
+	Round 1
+	The hidden word is 5 letters long.
+	Probe word: xyzzy
+	I don't know that word.
+	Probe word: ether
+	You got it in 1 try.
+	Average: 1.00, minimum: 1, maximum: 1
+
+Test 3: Testing winning in 1+ guesses
+
+	How many rounds do you want to play? 1
+
+	Round 1
+	The hidden word is 4 letters long.
+	Probe word: pear
+	Golds: 2, Silvers: 0
+	Probe word: poor
+	You got it in 2 tries.
+	Average: 2.00, minimum: 2, maximum: 2
+
+Test 4: Testing empty txt, or file not found
+
+	No words were loaded, so I can't play the game.
+
+Test 5: Testing 3 letter probe word
+
+	How many rounds do you want to play? 1
+
+	Round 1
+	The hidden word is 6 letters long.
+	Probe word: pre
+	Your probe word must be a word of 4 to 6 lower case letters.
+	Probe word: medley
+	You got it in 1 try.
+	Average: 1.00, minimum: 1, maximum: 1
